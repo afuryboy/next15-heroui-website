@@ -21,41 +21,32 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "React",
-    "Next.js",
-    "NextUI",
-    "Tailwind CSS",
-    "HeroUI",
-    "React Aria",
-    "Server Components",
-    "React Components",
-    "UI Components",
-    "UI Kit",
-    "UI Library",
-    "UI Framework",
-    "UI Design System",
+    "nextjs",
+    "react",
+    "heroui",
+    "blog"
   ],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
-  },
+  // icons: {
+  //   icon: "/favicon.ico",
+  //   shortcut: "/favicon-32x32.png",
+  //   apple: "/apple-touch-icon.png",
+  // },
   manifest: "/manifest.json",
-  twitter: siteConfig.twitter,
-  openGraph: siteConfig.openGraph,
-  authors: [
-    {
-      name: "hero_ui",
-      url: "https://x.com/hero_ui",
-    },
-  ],
-  creator: "heroui-inc",
-  alternates: {
-    canonical: "https://heroui.com",
-    types: {
-      "application/rss+xml": [{url: "https://heroui.com/feed.xml", title: "HeroUI RSS Feed"}],
-    },
-  },
+  // twitter: siteConfig.twitter,
+  // openGraph: siteConfig.openGraph,
+  // authors: [
+  //   {
+  //     name: "jiangbao",
+  //     url: "https://x.com/hero_ui",
+  //   },
+  // ],
+  // creator: "heroui-inc",
+  // alternates: {
+  //   canonical: "https://heroui.com",
+  //   types: {
+  //     "application/rss+xml": [{url: "https://heroui.com/feed.xml", title: "HeroUI RSS Feed"}],
+  //   },
+  // },
 };
 
 export const viewport: Viewport = {
