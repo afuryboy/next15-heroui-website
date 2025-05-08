@@ -40,13 +40,3 @@ next-env.d.ts
 # cloudflare
 .wrangler
 /.open-next/
-
-/components
-
-/content
-
-/public
-
-/styles
-
-/libs
