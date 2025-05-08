@@ -40,3 +40,5 @@ next-env.d.ts
 # cloudflare
 .wrangler
 /.open-next/
+
+/public/marathon.mp4
