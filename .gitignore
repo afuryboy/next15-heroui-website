@@ -41,3 +41,8 @@ next-env.d.ts
 .wrangler
 /.open-next/
 
+/components
+
+/content
+
+/public
