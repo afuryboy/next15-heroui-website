@@ -1,0 +1,161 @@
+---
+title: "fastify CORS跨域支持"
+description: "使用fastify开发，前后的分离，如何实现CORS"
+date: "2025-05-11"
+image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg"
+tags: ["fastify", "cors"]
+author:
+  name: "JiangBao"
+  username: "这家伙很懒，什么也没留下"
+  avatar: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png"
+---
+
+
+
+<img
+  src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg"
+  width={700}
+  height={350}
+  alt="HeroUI"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+最近我正在使用`fastify`作为后端去开发，但是遇到了跨域cors问题，记录一下问题解决的过程。
+
+### 项目结构介绍
+
+前端：使用vite初始化一个react+ts模版项目
+
+后端：不借助任何cli工具初始化项目，就直接一个app.ts 然后tsx命令运行
+
+
+### 前端代码调用
+
+```jsx
+// about页面
+import { useTRPC } from "@/lib/trpc"
+import { useQuery } from "@tanstack/react-query"
+export default function About() {
+    const trpc = useTRPC()
+    const {data, isLoading, error} = useQuery(trpc.beer.getBeers.queryOptions({size: 6}))
+    if(isLoading) return 'loading'
+    if(error) return 'error:' + error.message
+    return (
+        <div>{data}</div>
+    )
+}
+```
+我的前端服务是`localhost:3002`
+这里我是使用`trpc`+`react-query`的方式进行rpc调用，这里换成http请求也是一样。
+
+
+### 服务端代码
+
+```ts
+import Fastify, { FastifyRequest, FastifyReply } from "fastify";
+import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapters/fastify"
+import dotenv from "dotenv";
+dotenv.config({ path: ".env" });
+import { AppRouter, appRouter } from "./router"
+import createContext from "./router/context";
+const fastify = Fastify();
+const start = async () => {
+  try {
+    fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
+      return reply.send({ message: "Hello world!" });
+    });
+
+    await fastify.register(fastifyTRPCPlugin, {
+      prefix: "/",
+      trpcOptions: {
+        router: appRouter,
+        createContext,
+      } as FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
+    })
+    await fastify.listen({ port: 3000, host: "0.0.0.0", });
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();
+
+```
+我的后端服务是`localhost:3000`
+
+
+
+### 调用报错
+
+当我进入前端服务/about页面
+
+<img
+  src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-1.png"
+  width={700}
+  
+  alt="cors"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+页面报错: Access to fetch at 'http://localhost:3000/beer.getBeers?batch=1&input=%7B%220%22%3A%7B%22size%22%3A6%7D%7D' from origin 'http://localhost:3002' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+出现cors问题。
+
+
+### 解决方法
+
+fastify内置cors插件
+
+```ts
+import Fastify, { FastifyRequest, FastifyReply } from "fastify";
+import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapters/fastify"
+import dotenv from "dotenv";
+dotenv.config({ path: ".env" });
+import { AppRouter, appRouter } from "./router"
+import createContext from "./router/context";
+const fastify = Fastify();
+const start = async () => {
+  try {
+    // CORS跨域支持
+    await fastify.register(fastifyCors, {
+      credentials: true,
+      origin: process.env.CLIENT_URL,
+    })
+
+    fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
+      return reply.send({ message: "Hello world!" });
+    });
+
+    await fastify.register(fastifyTRPCPlugin, {
+      prefix: "/",
+      trpcOptions: {
+        router: appRouter,
+        createContext,
+      } as FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
+    })
+    await fastify.listen({ port: 3000, host: "0.0.0.0", });
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();
+
+```
+
+配置参数 `origin: 配你前端服务地址` 比如: http://localhost:3002 
+
+重新看一下页面请求情况
+
+<img
+  src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-2.png"
+  width={700}
+  
+  alt="cors"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+
+其实fastify解决跨域问题挺简单，使用内置cors插件即可

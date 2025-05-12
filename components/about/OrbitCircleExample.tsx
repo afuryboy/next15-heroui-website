@@ -66,7 +66,7 @@ export default function OrbitCircleExample() {
     >
       <div>
         <Image
-          src="/avatars/avatar.png"
+          src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png"
           alt="jiangbao"
           className="h-8 w-8 rounded-full"
           height={40}

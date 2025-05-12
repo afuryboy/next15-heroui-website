@@ -34,6 +34,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "heroui-assets.nyc3.cdn.digitaloceanspaces.com",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
     ],
   },
   rewrites: async () => {

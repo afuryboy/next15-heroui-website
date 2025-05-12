@@ -48,7 +48,7 @@ export default function About() {
           </div>
           <div className="flex flex-row">
             <div className="w-1/2 hidden md:flex">
-              <Image src="/about/robot.webp" />
+              <Image src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/robot.webp" />
             </div>
             <div className="md:w-1/2 w-full flex items-center px-2">
               <Card className="w-full">
@@ -58,7 +58,7 @@ export default function About() {
                       isBordered
                       radius="full"
                       size="md"
-                      src="/avatars/avatar.png"
+                      src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png"
                     />
                     <div className="flex flex-col gap-1 items-start justify-center">
                       <h4 className="text-small font-semibold leading-none text-default-600">

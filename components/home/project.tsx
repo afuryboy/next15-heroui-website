@@ -71,14 +71,14 @@ const ProjectCard = (project: ProjectProp) => {
 export default function HomeProject() {
   const projects: ProjectProp[] = [
     {
-      image: "/project/1-1.png",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/project-scene-editor.png",
       title: "场景编辑器",
       description:
         "场景编辑器的项目背景是为了解决服务机器人现有平台中任务管理编辑任务模式单一固定等缺点，无法充分利用机器人功能，因此才有了场景编辑器这一低代码任务平台。",
       skill: "vue + logicFlow",
     },
     {
-      image: "/project/2-2.png",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/project-action-editor.png",
       title: "动作编辑器",
       description:
         "动作编辑器的项目背景是为机器人头部面部底部的动作做一个时间轴的配置，可预览。",
@@ -86,27 +86,27 @@ export default function HomeProject() {
     },
 
     {
-      image: "/project/3-1.png",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/project-pji-amr.png",
       title: "机器人统一平台",
       description: "抽离各个类型机器人公共部分",
       skill: "vue3、pina",
     },
     {
-      image: "/project/okx.png",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/project-okx.png",
       title: "okx法币（响应式改版）",
       description:
         "ok交易所出入金, 当时交易所的网站不是响应式，pc和手机端2套代码，法币是整个公司所有业务中第一个开始响应式改版的业务。截图仅展示法币首页界面。",
       skill: "react hook、mobx",
     },
     {
-      image: "/project/st-video-4.mp4",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/video/st-video-4.mp4",
       title: "SenseDOOH 户外广告分析平台",
       description: "SenseDOOH 户外广告分析平台",
       skill: "vue",
       type: "video",
     },
     {
-      image: "/project/st-video-3.mp4",
+      image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/video/st-video-3.mp4",
       title: "人脸抓取",
       description: "实时人脸框跟踪",
       skill: "vue",

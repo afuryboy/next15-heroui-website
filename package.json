@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "rimraf .contentlayer && concurrently \"contentlayer2 dev\" \"next dev\"",
+    "dev": "rimraf .contentlayer && concurrently \"contentlayer2 dev\" \"next dev -p 8082\"",
     "build": "contentlayer2 build && next build ",
     "build:analyze": "ANALYZE=true next build",
     "start": "next start",

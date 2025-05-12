@@ -1,78 +1,37 @@
 [
   {
-    "title": "使用 Nextjs 和 heroui 开发网站",
-    "description": "全栈框架Nextjs搭配现代化UI库Heroui快速搭建一个完整的网站",
-    "date": "2025-05-02T16:00:00.000Z",
+    "title": "fastify CORS跨域支持",
+    "description": "使用fastify开发，前后的分离，如何实现CORS",
+    "date": "2025-05-11T00:00:00.000Z",
     "tags": [
-      "heroui",
-      "tailwindcss",
-      "react",
-      "nextjs",
-      "react-server-components"
+      "fastify",
+      "cors"
     ],
     "author": {
-      "name": "K",
-      "avatar": "/avatars/avatar.png",
-      "username": "jiangbao",
+      "name": "JiangBao",
+      "avatar": "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png",
+      "username": "这家伙很懒，什么也没留下",
       "type": "AuthorProperties",
       "_raw": {}
     },
-    "image": "/blog/heroui.png",
+    "image": "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg",
     "body": {
-      "raw": "\n<img\n  src=\"/blog/heroui.png\"\n  width={700}\n  height={350}\n  alt=\"HeroUI\"\n  className=\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"\n/>\n\n这是一段测试",
-      "code": "var Component=(()=>{var m=Object.create;var o=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var x=Object.getOwnPropertyNames;var h=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var j=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),f=(e,t)=>{for(var n in t)o(e,n,{get:t[n],enumerable:!0})},i=(e,t,n,s)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let a of x(t))!p.call(e,a)&&a!==n&&o(e,a,{get:()=>t[a],enumerable:!(s=g(t,a))||s.enumerable});return e};var b=(e,t,n)=>(n=e!=null?m(h(e)):{},i(t||!e||!e.__esModule?o(n,\"default\",{value:e,enumerable:!0}):n,e)),_=e=>i(o({},\"__esModule\",{value:!0}),e);var d=j((N,c)=>{c.exports=_jsx_runtime});var v={};f(v,{default:()=>l,frontmatter:()=>w});var r=b(d()),w={title:\"\\u4F7F\\u7528 Nextjs \\u548C heroui \\u5F00\\u53D1\\u7F51\\u7AD9\",description:\"\\u5168\\u6808\\u6846\\u67B6Nextjs\\u642D\\u914D\\u73B0\\u4EE3\\u5316UI\\u5E93Heroui\\u5FEB\\u901F\\u642D\\u5EFA\\u4E00\\u4E2A\\u5B8C\\u6574\\u7684\\u7F51\\u7AD9\",date:\"2025-05-3\",image:\"/blog/heroui.png\",tags:[\"heroui\",\"tailwindcss\",\"react\",\"nextjs\",\"react-server-components\"],author:{name:\"K\",username:\"jiangbao\",avatar:\"/avatars/avatar.png\"}};function u(e){let t={p:\"p\",...e.components};return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(\"img\",{src:\"/blog/heroui.png\",width:700,height:350,alt:\"HeroUI\",className:\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"}),`\n`,(0,r.jsx)(t.p,{children:\"\\u8FD9\\u662F\\u4E00\\u6BB5\\u6D4B\\u8BD5\"})]})}function l(e={}){let{wrapper:t}=e.components||{};return t?(0,r.jsx)(t,{...e,children:(0,r.jsx)(u,{...e})}):u(e)}return _(v);})();\n;return Component;"
+      "raw": "\n\n\n<img\n  src=\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg\"\n  width={700}\n  height={350}\n  alt=\"HeroUI\"\n  className=\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"\n/>\n\n最近我正在使用`fastify`作为后端去开发，但是遇到了跨域cors问题，记录一下问题解决的过程。\n\n### 项目结构介绍\n\n前端：使用vite初始化一个react+ts模版项目\n\n后端：不借助任何cli工具初始化项目，就直接一个app.ts 然后tsx命令运行\n\n\n### 前端代码调用\n\n```jsx\n// about页面\nimport { useTRPC } from \"@/lib/trpc\"\nimport { useQuery } from \"@tanstack/react-query\"\nexport default function About() {\n    const trpc = useTRPC()\n    const {data, isLoading, error} = useQuery(trpc.beer.getBeers.queryOptions({size: 6}))\n    if(isLoading) return 'loading'\n    if(error) return 'error:' + error.message\n    return (\n        <div>{data}</div>\n    )\n}\n```\n我的前端服务是`localhost:3002`\n这里我是使用`trpc`+`react-query`的方式进行rpc调用，这里换成http请求也是一样。\n\n\n### 服务端代码\n\n```ts\nimport Fastify, { FastifyRequest, FastifyReply } from \"fastify\";\nimport { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from \"@trpc/server/adapters/fastify\"\nimport dotenv from \"dotenv\";\ndotenv.config({ path: \".env\" });\nimport { AppRouter, appRouter } from \"./router\"\nimport createContext from \"./router/context\";\nconst fastify = Fastify();\nconst start = async () => {\n  try {\n    fastify.get(\"/\", async (_request: FastifyRequest, reply: FastifyReply) => {\n      return reply.send({ message: \"Hello world!\" });\n    });\n\n    await fastify.register(fastifyTRPCPlugin, {\n      prefix: \"/\",\n      trpcOptions: {\n        router: appRouter,\n        createContext,\n      } as FastifyTRPCPluginOptions<AppRouter>[\"trpcOptions\"],\n    })\n    await fastify.listen({ port: 3000, host: \"0.0.0.0\", });\n  } catch (err) {\n    fastify.log.error(err);\n    process.exit(1);\n  }\n};\n\nstart();\n\n```\n我的后端服务是`localhost:3000`\n\n\n\n### 调用报错\n\n当我进入前端服务/about页面\n\n<img\n  src=\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-1.png\"\n  width={700}\n  \n  alt=\"cors\"\n  className=\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"\n/>\n\n页面报错: Access to fetch at 'http://localhost:3000/beer.getBeers?batch=1&input=%7B%220%22%3A%7B%22size%22%3A6%7D%7D' from origin 'http://localhost:3002' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.\n\n出现cors问题。\n\n\n### 解决方法\n\nfastify内置cors插件\n\n```ts\nimport Fastify, { FastifyRequest, FastifyReply } from \"fastify\";\nimport { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from \"@trpc/server/adapters/fastify\"\nimport dotenv from \"dotenv\";\ndotenv.config({ path: \".env\" });\nimport { AppRouter, appRouter } from \"./router\"\nimport createContext from \"./router/context\";\nconst fastify = Fastify();\nconst start = async () => {\n  try {\n    // CORS跨域支持\n    await fastify.register(fastifyCors, {\n      credentials: true,\n      origin: process.env.CLIENT_URL,\n    })\n\n    fastify.get(\"/\", async (_request: FastifyRequest, reply: FastifyReply) => {\n      return reply.send({ message: \"Hello world!\" });\n    });\n\n    await fastify.register(fastifyTRPCPlugin, {\n      prefix: \"/\",\n      trpcOptions: {\n        router: appRouter,\n        createContext,\n      } as FastifyTRPCPluginOptions<AppRouter>[\"trpcOptions\"],\n    })\n    await fastify.listen({ port: 3000, host: \"0.0.0.0\", });\n  } catch (err) {\n    fastify.log.error(err);\n    process.exit(1);\n  }\n};\n\nstart();\n\n```\n\n配置参数 `origin: 配你前端服务地址` 比如: http://localhost:3002 \n\n重新看一下页面请求情况\n\n<img\n  src=\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-2.png\"\n  width={700}\n  \n  alt=\"cors\"\n  className=\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"\n/>\n\n\n其实fastify解决跨域问题挺简单，使用内置cors插件即可",
+      "code": "var Component=(()=>{var d=Object.create;var o=Object.defineProperty;var h=Object.getOwnPropertyDescriptor;var y=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var m=(r,t)=>()=>(t||r((t={exports:{}}).exports,t),t.exports),b=(r,t)=>{for(var n in t)o(r,n,{get:t[n],enumerable:!0})},a=(r,t,n,i)=>{if(t&&typeof t==\"object\"||typeof t==\"function\")for(let s of y(t))!g.call(r,s)&&s!==n&&o(r,s,{get:()=>t[s],enumerable:!(i=h(t,s))||i.enumerable});return r};var R=(r,t,n)=>(n=r!=null?d(u(r)):{},a(t||!r||!r.__esModule?o(n,\"default\",{value:r,enumerable:!0}):n,r)),x=r=>a(o({},\"__esModule\",{value:!0}),r);var l=m((F,c)=>{c.exports=_jsx_runtime});var v={};b(v,{default:()=>f,frontmatter:()=>C});var e=R(l()),C={title:\"fastify CORS\\u8DE8\\u57DF\\u652F\\u6301\",description:\"\\u4F7F\\u7528fastify\\u5F00\\u53D1\\uFF0C\\u524D\\u540E\\u7684\\u5206\\u79BB\\uFF0C\\u5982\\u4F55\\u5B9E\\u73B0CORS\",date:\"2025-05-11\",image:\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg\",tags:[\"fastify\",\"cors\"],author:{name:\"JiangBao\",username:\"\\u8FD9\\u5BB6\\u4F19\\u5F88\\u61D2\\uFF0C\\u4EC0\\u4E48\\u4E5F\\u6CA1\\u7559\\u4E0B\",avatar:\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png\"}};function p(r){let t={a:\"a\",code:\"code\",h3:\"h3\",p:\"p\",pre:\"pre\",...r.components};return(0,e.jsxs)(e.Fragment,{children:[(0,e.jsx)(\"img\",{src:\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg\",width:700,height:350,alt:\"HeroUI\",className:\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"}),`\n`,(0,e.jsxs)(t.p,{children:[\"\\u6700\\u8FD1\\u6211\\u6B63\\u5728\\u4F7F\\u7528\",(0,e.jsx)(t.code,{children:\"fastify\"}),\"\\u4F5C\\u4E3A\\u540E\\u7AEF\\u53BB\\u5F00\\u53D1\\uFF0C\\u4F46\\u662F\\u9047\\u5230\\u4E86\\u8DE8\\u57DFcors\\u95EE\\u9898\\uFF0C\\u8BB0\\u5F55\\u4E00\\u4E0B\\u95EE\\u9898\\u89E3\\u51B3\\u7684\\u8FC7\\u7A0B\\u3002\"]}),`\n`,(0,e.jsx)(t.h3,{id:\"\\u9879\\u76EE\\u7ED3\\u6784\\u4ECB\\u7ECD\",children:\"\\u9879\\u76EE\\u7ED3\\u6784\\u4ECB\\u7ECD\"}),`\n`,(0,e.jsx)(t.p,{children:\"\\u524D\\u7AEF\\uFF1A\\u4F7F\\u7528vite\\u521D\\u59CB\\u5316\\u4E00\\u4E2Areact+ts\\u6A21\\u7248\\u9879\\u76EE\"}),`\n`,(0,e.jsx)(t.p,{children:\"\\u540E\\u7AEF\\uFF1A\\u4E0D\\u501F\\u52A9\\u4EFB\\u4F55cli\\u5DE5\\u5177\\u521D\\u59CB\\u5316\\u9879\\u76EE\\uFF0C\\u5C31\\u76F4\\u63A5\\u4E00\\u4E2Aapp.ts \\u7136\\u540Etsx\\u547D\\u4EE4\\u8FD0\\u884C\"}),`\n`,(0,e.jsx)(t.h3,{id:\"\\u524D\\u7AEF\\u4EE3\\u7801\\u8C03\\u7528\",children:\"\\u524D\\u7AEF\\u4EE3\\u7801\\u8C03\\u7528\"}),`\n`,(0,e.jsx)(t.pre,{children:(0,e.jsx)(t.code,{className:\"language-jsx\",children:`// about\\u9875\\u9762\nimport { useTRPC } from \"@/lib/trpc\"\nimport { useQuery } from \"@tanstack/react-query\"\nexport default function About() {\n    const trpc = useTRPC()\n    const {data, isLoading, error} = useQuery(trpc.beer.getBeers.queryOptions({size: 6}))\n    if(isLoading) return 'loading'\n    if(error) return 'error:' + error.message\n    return (\n        <div>{data}</div>\n    )\n}\n`})}),`\n`,(0,e.jsxs)(t.p,{children:[\"\\u6211\\u7684\\u524D\\u7AEF\\u670D\\u52A1\\u662F\",(0,e.jsx)(t.code,{children:\"localhost:3002\"}),`\n\\u8FD9\\u91CC\\u6211\\u662F\\u4F7F\\u7528`,(0,e.jsx)(t.code,{children:\"trpc\"}),\"+\",(0,e.jsx)(t.code,{children:\"react-query\"}),\"\\u7684\\u65B9\\u5F0F\\u8FDB\\u884Crpc\\u8C03\\u7528\\uFF0C\\u8FD9\\u91CC\\u6362\\u6210http\\u8BF7\\u6C42\\u4E5F\\u662F\\u4E00\\u6837\\u3002\"]}),`\n`,(0,e.jsx)(t.h3,{id:\"\\u670D\\u52A1\\u7AEF\\u4EE3\\u7801\",children:\"\\u670D\\u52A1\\u7AEF\\u4EE3\\u7801\"}),`\n`,(0,e.jsx)(t.pre,{children:(0,e.jsx)(t.code,{className:\"language-ts\",children:`import Fastify, { FastifyRequest, FastifyReply } from \"fastify\";\nimport { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from \"@trpc/server/adapters/fastify\"\nimport dotenv from \"dotenv\";\ndotenv.config({ path: \".env\" });\nimport { AppRouter, appRouter } from \"./router\"\nimport createContext from \"./router/context\";\nconst fastify = Fastify();\nconst start = async () => {\n  try {\n    fastify.get(\"/\", async (_request: FastifyRequest, reply: FastifyReply) => {\n      return reply.send({ message: \"Hello world!\" });\n    });\n\n    await fastify.register(fastifyTRPCPlugin, {\n      prefix: \"/\",\n      trpcOptions: {\n        router: appRouter,\n        createContext,\n      } as FastifyTRPCPluginOptions<AppRouter>[\"trpcOptions\"],\n    })\n    await fastify.listen({ port: 3000, host: \"0.0.0.0\", });\n  } catch (err) {\n    fastify.log.error(err);\n    process.exit(1);\n  }\n};\n\nstart();\n\n`})}),`\n`,(0,e.jsxs)(t.p,{children:[\"\\u6211\\u7684\\u540E\\u7AEF\\u670D\\u52A1\\u662F\",(0,e.jsx)(t.code,{children:\"localhost:3000\"})]}),`\n`,(0,e.jsx)(t.h3,{id:\"\\u8C03\\u7528\\u62A5\\u9519\",children:\"\\u8C03\\u7528\\u62A5\\u9519\"}),`\n`,(0,e.jsx)(t.p,{children:\"\\u5F53\\u6211\\u8FDB\\u5165\\u524D\\u7AEF\\u670D\\u52A1/about\\u9875\\u9762\"}),`\n`,(0,e.jsx)(\"img\",{src:\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-1.png\",width:700,alt:\"cors\",className:\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"}),`\n`,(0,e.jsxs)(t.p,{children:[\"\\u9875\\u9762\\u62A5\\u9519: Access to fetch at '\",(0,e.jsx)(t.a,{href:\"http://localhost:3000/beer.getBeers?batch=1&input=%7B%220%22%3A%7B%22size%22%3A6%7D%7D\",children:\"http://localhost:3000/beer.getBeers?batch=1&input=%7B%220%22%3A%7B%22size%22%3A6%7D%7D\"}),\"' from origin '\",(0,e.jsx)(t.a,{href:\"http://localhost:3002\",children:\"http://localhost:3002\"}),\"' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.\"]}),`\n`,(0,e.jsx)(t.p,{children:\"\\u51FA\\u73B0cors\\u95EE\\u9898\\u3002\"}),`\n`,(0,e.jsx)(t.h3,{id:\"\\u89E3\\u51B3\\u65B9\\u6CD5\",children:\"\\u89E3\\u51B3\\u65B9\\u6CD5\"}),`\n`,(0,e.jsx)(t.p,{children:\"fastify\\u5185\\u7F6Ecors\\u63D2\\u4EF6\"}),`\n`,(0,e.jsx)(t.pre,{children:(0,e.jsx)(t.code,{className:\"language-ts\",children:`import Fastify, { FastifyRequest, FastifyReply } from \"fastify\";\nimport { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from \"@trpc/server/adapters/fastify\"\nimport dotenv from \"dotenv\";\ndotenv.config({ path: \".env\" });\nimport { AppRouter, appRouter } from \"./router\"\nimport createContext from \"./router/context\";\nconst fastify = Fastify();\nconst start = async () => {\n  try {\n    // CORS\\u8DE8\\u57DF\\u652F\\u6301\n    await fastify.register(fastifyCors, {\n      credentials: true,\n      origin: process.env.CLIENT_URL,\n    })\n\n    fastify.get(\"/\", async (_request: FastifyRequest, reply: FastifyReply) => {\n      return reply.send({ message: \"Hello world!\" });\n    });\n\n    await fastify.register(fastifyTRPCPlugin, {\n      prefix: \"/\",\n      trpcOptions: {\n        router: appRouter,\n        createContext,\n      } as FastifyTRPCPluginOptions<AppRouter>[\"trpcOptions\"],\n    })\n    await fastify.listen({ port: 3000, host: \"0.0.0.0\", });\n  } catch (err) {\n    fastify.log.error(err);\n    process.exit(1);\n  }\n};\n\nstart();\n\n`})}),`\n`,(0,e.jsxs)(t.p,{children:[\"\\u914D\\u7F6E\\u53C2\\u6570 \",(0,e.jsx)(t.code,{children:\"origin: \\u914D\\u4F60\\u524D\\u7AEF\\u670D\\u52A1\\u5730\\u5740\"}),\" \\u6BD4\\u5982: \",(0,e.jsx)(t.a,{href:\"http://localhost:3002\",children:\"http://localhost:3002\"})]}),`\n`,(0,e.jsx)(t.p,{children:\"\\u91CD\\u65B0\\u770B\\u4E00\\u4E0B\\u9875\\u9762\\u8BF7\\u6C42\\u60C5\\u51B5\"}),`\n`,(0,e.jsx)(\"img\",{src:\"https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/20250512-fastify-cors-2.png\",width:700,alt:\"cors\",className:\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"}),`\n`,(0,e.jsx)(t.p,{children:\"\\u5176\\u5B9Efastify\\u89E3\\u51B3\\u8DE8\\u57DF\\u95EE\\u9898\\u633A\\u7B80\\u5355\\uFF0C\\u4F7F\\u7528\\u5185\\u7F6Ecors\\u63D2\\u4EF6\\u5373\\u53EF\"})]})}function f(r={}){let{wrapper:t}=r.components||{};return t?(0,e.jsx)(t,{...r,children:(0,e.jsx)(p,{...r})}):p(r)}return x(v);})();\n;return Component;"
     },
-    "_id": "blog/nextjs-heroui.mdx",
+    "_id": "blog/fastify-cors.mdx",
     "_raw": {
-      "sourceFilePath": "blog/nextjs-heroui.mdx",
-      "sourceFileName": "nextjs-heroui.mdx",
+      "sourceFilePath": "blog/fastify-cors.mdx",
+      "sourceFileName": "fastify-cors.mdx",
       "sourceFileDir": "blog",
       "contentType": "mdx",
-      "flattenedPath": "blog/nextjs-heroui"
+      "flattenedPath": "blog/fastify-cors"
     },
     "type": "BlogPost",
-    "slug": "/blog/nextjs-heroui",
-    "slugAsParams": "nextjs-heroui",
-    "url": "/blog/nextjs-heroui",
-    "formattedDate": "May 3, 2025",
-    "imageAsParams": "https://heroui.com/blog/heroui.png"
-  },
-  {
-    "title": "tailwindcss 自定义响应式class",
-    "description": "tailwindcss",
-    "date": "2025-05-04T16:00:00.000Z",
-    "tags": [
-      "heroui",
-      "tailwindcss",
-      "react",
-      "nextjs",
-      "react-server-components"
-    ],
-    "author": {
-      "name": "K",
-      "avatar": "/avatars/avatar.png",
-      "username": "jiangbao",
-      "type": "AuthorProperties",
-      "_raw": {}
-    },
-    "image": "/blog/tailwindcss-responsive.png",
-    "body": {
-      "raw": "\n<img\n  src=\"/blog/tailwindcss-responsive.png\"\n  width={700}\n  height={350}\n  alt=\"HeroUI\"\n  className=\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"\n/>\n\n这是一段测试",
-      "code": "var Component=(()=>{var p=Object.create;var s=Object.defineProperty;var g=Object.getOwnPropertyDescriptor;var u=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,h=Object.prototype.hasOwnProperty;var w=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),f=(t,e)=>{for(var a in e)s(t,a,{get:e[a],enumerable:!0})},i=(t,e,a,o)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of u(e))!h.call(t,r)&&r!==a&&s(t,r,{get:()=>e[r],enumerable:!(o=g(e,r))||o.enumerable});return t};var j=(t,e,a)=>(a=t!=null?p(x(t)):{},i(e||!t||!t.__esModule?s(a,\"default\",{value:t,enumerable:!0}):a,t)),b=t=>i(s({},\"__esModule\",{value:!0}),t);var d=w((C,c)=>{c.exports=_jsx_runtime});var v={};f(v,{default:()=>m,frontmatter:()=>_});var n=j(d()),_={title:\"tailwindcss \\u81EA\\u5B9A\\u4E49\\u54CD\\u5E94\\u5F0Fclass\",description:\"tailwindcss\",date:\"2025-05-5\",image:\"/blog/tailwindcss-responsive.png\",tags:[\"heroui\",\"tailwindcss\",\"react\",\"nextjs\",\"react-server-components\"],author:{name:\"K\",username:\"jiangbao\",avatar:\"/avatars/avatar.png\"}};function l(t){let e={p:\"p\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(\"img\",{src:\"/blog/tailwindcss-responsive.png\",width:700,height:350,alt:\"HeroUI\",className:\"w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg\"}),`\n`,(0,n.jsx)(e.p,{children:\"\\u8FD9\\u662F\\u4E00\\u6BB5\\u6D4B\\u8BD5\"})]})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(l,{...t})}):l(t)}return b(v);})();\n;return Component;"
-    },
-    "_id": "blog/tailwindcss-responsive.mdx",
-    "_raw": {
-      "sourceFilePath": "blog/tailwindcss-responsive.mdx",
-      "sourceFileName": "tailwindcss-responsive.mdx",
-      "sourceFileDir": "blog",
-      "contentType": "mdx",
-      "flattenedPath": "blog/tailwindcss-responsive"
-    },
-    "type": "BlogPost",
-    "slug": "/blog/tailwindcss-responsive",
-    "slugAsParams": "tailwindcss-responsive",
-    "url": "/blog/tailwindcss-responsive",
-    "formattedDate": "May 5, 2025",
-    "imageAsParams": "https://heroui.com/blog/tailwindcss-responsive.png"
+    "slug": "/blog/fastify-cors",
+    "slugAsParams": "fastify-cors",
+    "url": "/blog/fastify-cors",
+    "formattedDate": "May 11, 2025",
+    "imageAsParams": "https://heroui.comhttps://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/fastify-logo.jpg"
   }
 ]

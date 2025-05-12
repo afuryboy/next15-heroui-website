@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "JiangBao's space",
   description: "这是一个个人网站，主要功能是博客",
-  ogImage: "https://heroui.com/heroui.jpg",
+  ogImage: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png",
   author: "JiangBao",
   email: "",
   siteUrl: "",

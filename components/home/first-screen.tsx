@@ -11,7 +11,7 @@ export default function FirstScreen() {
     <div className="w-full">
       <video
         className="absolute left-0 right-0 h-screen w-full object-cover"
-        src="/marathon.mp4"
+        src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/video/marathon.mp4"
         autoPlay
         loop
         muted
