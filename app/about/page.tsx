@@ -41,7 +41,7 @@ export default function About() {
             </div>
           </div>
           <div>
-            <Image src="/article-rooms_2x.jpg" />
+            <Image src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/article-rooms_2x.jpg" />
           </div>
           <div className="text-center">
             <h2 className={title({ size: "sm" })}>基本信息</h2>
