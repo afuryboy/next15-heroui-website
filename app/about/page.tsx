@@ -16,6 +16,7 @@ import {
 } from "@heroui/react";
 import AboutTimeLine from "@/components/about/timeline";
 import OrbitCircleExample from "@/components/about/OrbitCircleExample";
+import * as motion from "motion/react-client";
 export default function About() {
   return (
     <>
@@ -43,14 +44,24 @@ export default function About() {
           <div>
             <Image src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/article-rooms_2x.jpg" />
           </div>
-          <div className="text-center">
+          <div className="text-center mt-16 lg:mt-30">
             <h2 className={title({ size: "sm" })}>基本信息</h2>
           </div>
-          <div className="flex flex-row">
-            <div className="w-1/2 hidden md:flex">
+          <div className="flex flex-row mt-10 lg:mt-20">
+            <motion.div
+              className="w-1/2 hidden md:flex"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
               <Image src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/robot.webp" />
-            </div>
-            <div className="md:w-1/2 w-full flex items-center px-2">
+            </motion.div>
+            <motion.div
+              className="md:w-1/2 w-full flex items-center px-2"
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
               <Card className="w-full">
                 <CardHeader className="justify-between">
                   <div className="flex gap-5">
@@ -91,13 +102,15 @@ export default function About() {
                   </div>
                 </CardFooter>
               </Card>
-            </div>
+            </motion.div>
           </div>
-          <div className="text-center">
+          <div className="text-center mt-16 lg:mt-30">
             <h2 className={title({ size: "sm" })}>技能点</h2>
           </div>
-          <div className="flex flex-row flex-wrap">
-            <div className="w-1/2 hidden md:flex">
+          <div className="flex flex-row flex-wrap mt-10 lg:mt-20">
+            <motion.div className="w-1/2 hidden md:flex" initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}>
               <Card className="w-full">
                 <CardBody>
                   <div className="mt-5 py-2 text-small text-default-400">
@@ -121,10 +134,12 @@ export default function About() {
                   </div>
                 </CardBody>
               </Card>
-            </div>
-            <div className="md:w-1/2 w-full flex items-center justify-center">
+            </motion.div>
+            <motion.div className="md:w-1/2 w-full flex items-center justify-center" initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}>
               <OrbitCircleExample />
-            </div>
+            </motion.div>
           </div>
           {/* 个人信息
           技能

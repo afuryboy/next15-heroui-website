@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react/dist/offline";
 import arrowRightIcon from "@iconify/icons-solar/arrow-right-linear";
 import { allBlogPosts } from "contentlayer2/generated";
 import { compareDesc } from "date-fns";
-
+import * as motion from "motion/react-client";
 import { BlogPostList } from "@/components/blog-post";
 import { __DEV__, __PREVIEW__ } from "@/utils";
 
@@ -33,7 +33,12 @@ export default function Blog() {
     });
   posts = posts.slice(0, 3);
   return (
-    <div className="w-full lg:px-16 mt-12">
+    <motion.div
+      className="w-full lg:px-16 mt-12"
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
       <div className="text-center">
         <h1 className="mb-2 font-bold text-4xl">最新博客</h1>
         <Link
@@ -51,6 +56,6 @@ export default function Blog() {
         </Link>
       </div>
       <BlogPostList posts={posts} />
-    </div>
+    </motion.div>
   );
 }

@@ -27,10 +27,10 @@ const ProjectCard = (project: ProjectProp) => {
     <AnimatePresence>
       {isMounted && (
         <motion.article
-          animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 5 }}
           initial={{ opacity: 0, y: 5 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Card
             isBlurred

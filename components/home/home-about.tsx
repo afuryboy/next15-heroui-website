@@ -9,7 +9,7 @@ import { sectionWrapper, title, titleWrapper, subtitle } from "../primitives";
 import Marquee from "../marketing/marquee";
 
 import { useIsMobile } from "@/hooks/use-media-query";
-
+import * as motion from "motion/react-client";
 export default function HomeAboutMe() {
   const [mounted, setMounted] = useState(false);
 
@@ -65,10 +65,14 @@ export default function HomeAboutMe() {
     <section
       className={sectionWrapper({ class: "mt-16 lg:mt-44 overflow-hidden" })}
     >
-      <div className="text-center">
+      <motion.div className="text-center" initial={{ x: 200, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}>
         <h1 className="mb-2 font-bold text-4xl">关于我</h1>
-      </div>
-      <div className="flex flex-col gap-8">
+      </motion.div>
+      <motion.div className="flex flex-col gap-8" initial={{ x: -200, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}>
         <div className="z-30 flex h-full flex-col items-start justify-center leading-8 pt-4">
           <Chip
             classNames={{
@@ -270,7 +274,7 @@ export default function HomeAboutMe() {
             <div className={webClassName} />
           </div>
         </div> */}
-      </div>
+      </motion.div>
     </section>
   );
 }
