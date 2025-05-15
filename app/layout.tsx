@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   // },
   manifest: "/manifest.json",
   // twitter: siteConfig.twitter,
-  // openGraph: siteConfig.openGraph,
+  openGraph: siteConfig.openGraph,
   // authors: [
   //   {
   //     name: "jiangbao",

@@ -10,17 +10,17 @@ export const siteConfig = {
   creator: "JiangBao",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "",
+    // locale: "en_US",
+    url: "https://www.afruyboy.site/",
     siteName: "JiangBao's space",
-    description: "",
+    description: "这是一个个人网站，主要功能是博客",
     images: [
-      // {
-      //   url: "",
-      //   width: 1200,
-      //   height: 630,
-      //   alt: "",
-      // },
+      {
+        url: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png",
+        width: 1200,
+        height: 630,
+        alt: "",
+      },
     ],
   },
   twitter: {
