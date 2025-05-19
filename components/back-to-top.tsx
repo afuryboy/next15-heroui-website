@@ -48,7 +48,7 @@ const BackToTopButton = () => {
   };
 
   return (
-    <span style={{display: showButton ? "flex" : "none"}} className='dark:bg-white bg-black text-white dark:text-black rounded-full fixed bottom-8 right-8 w-8 h-8 justify-center items-center z-100 cursor-pointer opacity-50 hover:opacity-100' onClick={scrollToTop}>
+    <span style={{display: showButton ? "flex" : "none"}} className='dark:bg-white bg-black text-white dark:text-black rounded-full fixed bottom-8 right-8 w-8 h-8 justify-center items-center z-50 cursor-pointer opacity-50 hover:opacity-100' onClick={scrollToTop}>
         <FaArrowUp />
     </span>
   )
