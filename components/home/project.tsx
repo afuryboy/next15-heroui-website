@@ -30,6 +30,7 @@ const ProjectCard = (project: ProjectProp) => {
         whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 5 }}
           initial={{ opacity: 0, y: 5 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Card
@@ -115,7 +116,7 @@ export default function HomeProject() {
   ];
   return (
     <section
-      className={sectionWrapper({ class: "mt-16 lg:mt-44 overflow-hidden" })}
+      className={sectionWrapper({ class: "mt-16 lg:mt-44" })}
     >
       <div className="text-center">
         <h1 className="mb-2 font-bold text-4xl">项目</h1>

@@ -13,7 +13,7 @@ import {fonts} from "@/config/fonts";
 import {Navbar} from "@/components/navbar";
 import {Footer} from "@/components/footer";
 import {ProBanner} from "@/components/pro-banner";
-
+import BackToTopButton from '@/components/back-to-top'
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -80,6 +80,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Footer />
           </div>
           <Cmdk />
+          <BackToTopButton />
         </Providers>
       </body>
     </html>

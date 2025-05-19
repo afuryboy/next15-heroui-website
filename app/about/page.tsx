@@ -52,6 +52,7 @@ export default function About() {
               className="w-1/2 hidden md:flex"
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}
             >
               <Image src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/robot.webp" />
@@ -60,6 +61,7 @@ export default function About() {
               className="md:w-1/2 w-full flex items-center px-2"
               initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}
             >
               <Card className="w-full">
@@ -110,6 +112,7 @@ export default function About() {
           <div className="flex flex-row flex-wrap mt-10 lg:mt-20">
             <motion.div className="w-1/2 hidden md:flex" initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}>
               <Card className="w-full">
                 <CardBody>
@@ -137,6 +140,7 @@ export default function About() {
             </motion.div>
             <motion.div className="md:w-1/2 w-full flex items-center justify-center" initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.5 }}>
               <OrbitCircleExample />
             </motion.div>

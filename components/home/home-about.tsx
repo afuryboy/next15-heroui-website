@@ -63,15 +63,17 @@ export default function HomeAboutMe() {
 
   return (
     <section
-      className={sectionWrapper({ class: "mt-16 lg:mt-44 overflow-hidden" })}
+      className={sectionWrapper({ class: "mt-16 lg:mt-44" })}
     >
       <motion.div className="text-center" initial={{ x: 200, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
       transition={{ duration: 1, delay: 0.2 }}>
         <h1 className="mb-2 font-bold text-4xl">关于我</h1>
       </motion.div>
       <motion.div className="flex flex-col gap-8" initial={{ x: -200, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
       transition={{ duration: 1, delay: 0.5 }}>
         <div className="z-30 flex h-full flex-col items-start justify-center leading-8 pt-4">
           <Chip

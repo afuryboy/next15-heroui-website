@@ -37,6 +37,7 @@ export default function Blog() {
       className="w-full lg:px-16 mt-12"
       initial={{ y: 100, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
       transition={{ duration: 1, delay: 0.5 }}
     >
       <div className="text-center">

@@ -1,0 +1,790 @@
+---
+title: "React Libraries for 2025"
+description: "在本指南中，我们将探索 2025 年必备的 React 库。这些库是使用 React 开发大型应用程序的基石。无论您是初学者还是经验丰富的开发者，本指南都能帮助您轻松驾驭庞大的 React 生态系统。"
+date: "2025-05-18"
+image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/react-ecosystem-in-2025-20241230100040995.jpg"
+tags: ["react 2025", "react libraries"]
+author:
+  name: "JiangBao"
+  username: "这家伙很懒，什么也没留下"
+  avatar: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png"
+---
+
+<img
+  src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/react-ecosystem-in-2025-20241230100040995.jpg"
+  width={700}
+  height={350}
+  alt="HeroUI"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+<div className='px-2.5 py-2.5 border-1 dark:border-white border-black'>
+原文地址：[https://www.robinwieruch.de/react-libraries/](https://www.robinwieruch.de/react-libraries/) 
+</div>
+
+
+React has been around for quite some time, and over the years, an extensive—yet sometimes overwhelming—ecosystem of libraries has grown around it. Developers transitioning from other languages or frameworks often struggle to navigate all the libraries needed to build web applications with React.
+React 已经存在了相当长一段时间，多年来，它周围已经发展出一个庞大（有时甚至令人眼花缭乱）的库生态系统。从其他语言或框架过渡到 React 的开发者经常难以驾驭构建 Web 应用程序所需的所有库 。
+
+At its core, React allows developers to build component-driven user interfaces using function components. While it includes built-in solutions like React Hooks for managing local state, handling side effects, and optimizing performance, everything ultimately boils down to working with functions—both components and hooks—to construct a UI.
+React 的核心在于允许开发者使用函数组件构建组件驱动的用户界面。虽然它内置了 React Hooks 等解决方案，用于管理本地状态、处理副作用和优化性能，但最终一切都归结为使用函数（包括组件和 Hooks）来构建 UI。
+
+In this walkthrough, we'll explore the essential React libraries for 2025. These libraries are the building blocks for developing large-scale applications with React. Whether you're a beginner or an experienced developer, this guide will help you navigate the vast React ecosystem effortlessly.
+在本指南中，我们将探索 2025 年必备的 React 库。这些库是使用 React 开发大型应用程序的基石。无论您是初学者还是经验丰富的开发者，本指南都能帮助您轻松驾驭庞大的 React 生态系统。
+
+<div style={{border: '1px solid #ccc', padding: '10px 20px'}}>
+<p>[Continue Reading: React Tech Stack for 2025](https://www.robinwieruch.de/react-tech-stack/)</p>
+<p>[继续阅读： 2025 年的 React 技术栈](https://www.robinwieruch.de/react-tech-stack/)</p>
+</div>
+
+
+Let's dive into the libraries that you could use for your next React application.
+让我们深入了解可用于下一个 React 应用程序的库。
+
+<hr />
+
+<div align="center">
+  <h2 align="center">Table of Contents  目录</h2>
+</div>
+
+- [Starting a new React Project（开始一个新的 React 项目）](#Starting-a-new-React-Project)
+- [Package Manager for React（React 包管理器）](#Package-Manager-for-React)
+- [React State Management（React 状态管理）](#React-State-Management)
+- [React Data Fetching（React 数据获取）](#React-Data-Fetching)
+- [Routing with React Router（使用 React Router 进行路由）](#Routing-with-React-Router)
+- [CSS Styling in React（React 中的 CSS 样式）](#CSS-Styling-in-React)
+- [React UI Libraries（React UI 库）](#React-UI-Libraries)
+- [React Animation Libraries（React 动画库）](#React-Animation-Libraries)
+- [Visualization and Chart Libraries in React（React 中的可视化和图表库）](#Visualization-and-Chart-Libraries-in-React)
+- [Form Libraries in React（React 中的表单库）](#Form-Libraries-in-React)
+- [Code Structure in React（React 中的代码结构）](#Code-Structure-in-React)
+- [React Authentication（React 身份验证）](#React-Authentication)
+- [React Backend（React后端）](#React-Backend)
+- [React Database（React数据库）](#React-Database)
+- [React Hosting (React 托管)](#React-Hosting)
+- [Testing in React (React 中测试)](#Testing-in-React)
+- [React and Immutable Data Structures(React 和不可变数据结构)](#React-and-Immutable-Data-Structures)
+- [React Internationalization (React 国际化)](#React-Internationalization)
+- [Rich Text Editor in React(React 中的富文本编辑器)](#Rich-Text-Editor-in-React)
+- [Payments in React (React 支付)](#Payments-in-React)
+- [Time in React（React 中的时间）](#Time-in-React)
+- [React Desktop Applications （React 桌面应用程序）](#React-Desktop-Applications)
+- [File Upload in React（React 中的文件上传）](#File-Upload-in-React)
+- [Mails in React（React 中的邮件）](#Mails-in-React)
+- [Drag and Drop  （拖放）](#Drag-and-Drop)
+- [Mobile Development with React（使用 React 进行移动开发）](#Mobile-Development-with-React)
+- [React VR/AR  （React VR/AR）](#React-VR/AR)
+- [Design Prototyping for React（React 的设计原型）](#Design-Prototyping-for-React)
+- [React Component Documentation（React 组件文档）](#React-Component-Documentation)
+
+<hr />
+
+<div align="center" id="Starting-a-new-React-Project">
+  <h3 align="center">Starting a new React Project</h3>
+  <h3 align="center">开始一个新的 React 项目</h3>
+</div>
+
+The first question a React beginner often asks is: how do you set up a React project? With so many tools available, choosing the right one can be overwhelming. The most popular option in the React community is Vite, which makes it easy to create projects with different libraries (such as React) and optional TypeScript support.
+React 初学者经常问的第一个问题是：如何搭建 React 项目？市面上有如此多的工具，选择合适的工具可能会让人不知所措。React 社区中最流行的工具是 Vite ，它可以轻松创建包含不同库（例如 React）的项目，并可选地支持 TypeScript。
+
+Vite also offers exceptional performance.
+Vite 还提供卓越的性能 。
+
+
+If you're already familiar with React, you might consider using one of its popular (meta) frameworks instead of Vite. Next.js is a widely used choice that builds on top of React, so understanding React's fundamentals is essential. It comes with many features out of the box, such as different rendering techniques, file-based routing and API routes.
+如果您已经熟悉 React，可以考虑使用其流行的元框架之一来代替 Vite。Next.js 是一个广泛使用的框架，它基于 React 构建，因此了解 React 的基础知识至关重要 。它具有许多开箱即用的功能，例如不同的渲染技术、基于文件的路由和 API 路由。
+
+
+While Next.js has been initially used for server-side rendering (web applications), it can be used for static site generation (websites) next to other rendering patterns (i.e. ISR) too. The most recent addition to Next.js are React Server Components (RSC) and React Server Functions (RSF) which contribute since 2023 to a big paradigm shift by moving React components from the client to the server.
+虽然 Next.js 最初用于服务器端渲染（Web 应用程序），但它也可以与其他渲染模式（例如 ISR）一起用于静态站点生成（网站）。Next.js 的最新成员是 React 服务器组件 (RSC) 和 React 服务器函数 (RSF)，它们自 2023 年以来通过将 React 组件从客户端迁移到服务器，促成了重大的范式转变。
+
+Two alternatives to Next.js are TanStack Start (beta) and React Router (in transition from Remix) which do not support (yet) React Server Components.
+Next.js 的两个替代方案是 TanStack Start（测试版）和 React Router（从 Remix 过渡而来），它们尚不支持 React 服务器组件。
+
+If performance for static content is your priority, take a look at Astro. As a framework-agnostic tool, it works seamlessly with React while shipping only HTML and CSS to the browser, even when using React for components. JavaScript is loaded only when components require interactivity, ensuring optimal performance.
+如果您优先考虑静态内容的性能，不妨考虑一下 Astro。Astro 是一款与框架无关的工具，它可以与 React 无缝协作，并且只需将 HTML 和 CSS 传输到浏览器，即使在使用 React 构建组件时也是如此。JavaScript 仅在组件需要交互时加载，从而确保最佳性能。
+
+If you just want to understand how tools like Vite work, try to set up a React project yourself. You will start with a bare bones HTML with JavaScript project and add React with its supportive tools (e.g. Webpack, Babel) yourself. It's not something you will have to deal with in your day to day work, especially since Vite became the successor of Webpack, but it's a great learning experience to get to know the underlying tooling.
+如果你只是想了解 Vite 等工具的工作原理，可以尝试自己搭建一个 React 项目 。你将从一个包含 JavaScript 的简单 HTML 项目开始，然后自行添加 React 及其支持工具（例如 Webpack、Babel）。这在日常工作中并不常见，尤其是在 Vite 取代 Webpack 之后，但了解底层工具仍然是一次很棒的学习经历。
+
+If you are a React veteran and want to try something new, check out Nitro, Redwood, or Waku. The latter, created by the developer behind Zustand, also includes support for React Server Components (RSC).
+如果你是 React 老手，并且想尝试一些新东西，可以看看 Nitro 、 Redwood 或 Waku 。后者由 Zustand 的开发者创建，也支持 React 服务器组件 (RSC)。
+
+Recommendations:  建议：
+
+- Vite for client-side rendered React applications
+Vite 用于客户端渲染的 React 应用程序
+
+- Next server-side rendered React applications
+下一个服务器端渲染的 React 应用程序
+
+- Astro for static-side generated React applications
+Astro 用于静态端生成的 React 应用程序
+
+
+
+
+
+<hr />
+<div align="center" id="Package-Manager-for-React">
+  <h3 align="center">Package Manager for React</h3>
+  <h3 align="center">REACT 包管理器</h3>
+</div>
+
+The most widely used package manager to install libraries (read: dependencies, node packages) in the JavaScript ecosystem (and therefore React) is npm, because it comes with every Node.js installation. However, yarn yarn and pnpm are great alternatives. Especially the latter comes with a greater performance boost.
+在 JavaScript 生态系统（以及 React）中，安装库（即依赖项、Node 包）最常用的包管理器是 npm ，因为它随每个 Node.js 安装而来。然而， yarn 和 pnpm 也是不错的选择。尤其是后者，性能提升更大。
+
+If you happen to create multiple React applications which depend on each other or which share a common set of custom UI components, you may want to check out the concept of a monorepo. All previously mentioned package managers allow you to create monorepos by using their in-house workspaces feature, however, I had the best developer experience using yarn or pnpm. In combination with monorepo pipeline tools such as Turborepo, the monorepo experience becomes perfect.
+如果您碰巧创建了多个相互依赖或共享一组自定义 UI 组件的 React 应用程序，您可能需要了解一下 monorepo 的概念。所有前面提到的包管理器都允许您使用其内部工作区功能创建 monorepo，但是，我使用 yarn 或 pnpm 获得了最佳的开发体验。结合 Turborepo 等 monorepo 管道工具，monorepo 体验将更加完美。
+
+Recommendations:  建议：
+
+- choose one package manager and stick to it
+选择一个包管理器并坚持使用它
+  - default and most widely used -> npm
+默认且最广泛使用的 -> npm
+  - increased performance but not as popular -> pnpm
+性能提升但不那么受欢迎 -> pnpm
+- if a monorepo is needed, check out Turborepo (see tutorial)
+如果需要 monorepo，请查看 Turborepo（参见教程）
+<hr />
+
+<div align="center" id="React-State-Management">
+  <h3 align="center">React State Management</h3>
+  <h3 align="center">React状态管理</h3>
+</div>
+React provides two built-in hooks for managing local state: useState and useReducer. For global state management, the built-in useContext hook allows you to pass data from top-level components to deeper components without relying on props, effectively preventing prop drilling.
+React 提供了两个内置钩子来管理本地状态： useState 和 useReducer 。对于全局状态管理，内置的 useContext 钩子允许你将数据从顶级组件传递到更深层的组件，而无需依赖 props ，从而有效地防止 prop 钻取。
+
+All three React hooks enable developers to implement powerful state management in React which is either co-located in components by using React's useState/useReducer Hooks or globally managed by combining them with React's useContext Hook.
+所有这三个 React hooks 都使开发人员能够在 React 中实现强大的状态管理，这些状态管理要么通过使用 React 的 useState/useReducer Hooks 位于组件中，要么通过将它们与 React 的 useContext Hook 结合进行全局管理。
+
+If you find yourself using React's Context too often for shared/global state, you should definitely check out Zustand. It allows you to manage global application state which can be read and modified by any React component that is connected to its store(s).
+如果你发现自己过于频繁地使用 React 的 Context 来处理共享/全局状态，那么你一定要看看 Zustand 。它允许你管理全局应用程序状态，这些状态可以被连接到其 store 的任何 React 组件读取和修改。
+
+While Zustand is becoming the de facto standard in the React community, many projects still use Redux. Personally, I haven't used Redux in my recent freelance work over the past few years, as I prefer Zustand for its simplicity. However, you'll encounter plenty of older React applications built with Redux.
+虽然 Zustand 正在成为 React 社区的事实标准，但许多项目仍在使用 Redux。就我个人而言，过去几年在从事自由职业时，我很少使用 Redux，因为我更喜欢 Zustand 的简洁性。不过，你还是会遇到很多使用 Redux 构建的旧版 React 应用程序。
+
+If you happen to use Redux, you should definitely check out Redux Toolkit as well. If you are into state machines, check out XState or Zag. As alternatives, if you need a global store but do not like Zustand or Redux, check other popular local state management solutions like Mobx, Jotai, or Nano Stores.
+如果你恰好使用 Redux，那么你也应该了解一下 Redux Toolkit 。如果你喜欢状态机，可以看看 XState 或 Zag 。此外，如果你需要一个全局 store，但不喜欢 Zustand 或 Redux，可以看看其他流行的本地状态管理解决方案，例如 Mobx 、 Jotai 或 Nano Stores 。
+
+Recommendations:  建议：
+
+- useState/useReducer for co-located or shared state (see tutorial)
+useState/useReducer 用于共置或共享状态（参见教程）
+- opt-in useContext for enabling little global state (see tutorial)
+选择使用 useContext 来启用小全局状态（参见教程）
+- Zustand (or an alternative) for lots of global state
+Zustand（或替代方案）用于许多全局状态
+
+<hr />
+
+<div align="center" id="React-Data-Fetching">
+  <h3 align="center">React Data Fetching</h3>
+  <h3 align="center">React数据获取</h3>
+</div>
+
+React's built-in hooks are great for UI state, but when it comes to state management (read: caching) for remote data (and therefore data fetching), I would recommend using a dedicated data fetching library such as TanStack Query (formerly React Query).
+React 的内置钩子非常适合 UI 状态，但是当涉及到远程数据（以及数据提取）的状态管理（读取：缓存）时，我建议使用专用的数据提取库，例如 TanStack Query （以前称为 React Query）。
+
+While TanStack Query itself is not seen as a state management library, because it is primarily used to fetch your remote data from APIs, it takes care of all the state management (e.g. caching, optimistic updates) of this remote data for you.
+虽然 TanStack Query 本身并不被视为状态管理库，因为它主要用于从 API 获取远程数据，但它会为您处理这些远程数据的所有状态管理（例如缓存、乐观更新）。
+
+TanStack Query was designed for consuming REST APIs. However, these days it supports GraphQL too. However, if you are looking for a more dedicated GraphQL library for your React frontend, check out either Apollo Client (popular), urql (lightweight), or Relay (by Facebook).
+TanStack Query 最初设计用于处理 REST API 。不过，现在它也支持 GraphQL 。如果您正在为 React 前端寻找更专用的 GraphQL 库，可以考虑 Apollo Client （比较流行）、 urql （轻量级）或 Relay （由 Facebook 开发）。
+
+If you are already using Redux and want to add data fetching with integrated state management in Redux, instead of adding TanStack Query, you may want to check out RTK Query which integrates data fetching neatly into Redux.
+如果您已经在使用 Redux，并且想要在 Redux 中添加带有集成状态管理的数据获取功能，而不是添加 TanStack Query，那么您可能需要查看将数据获取功能巧妙地集成到 Redux 中的 RTK Query 。
+
+If you control the frontend and the backend (both TypeScript), check out tRPC for end-to-end type safe APIs. It is a tremendous productivity boost and DX. You can also combine it with TanStack Query for all the niceties regarding data fetching while still being able to call your backend from your frontend by using typed functions.
+如果您控制着前端和后端（均使用 TypeScript），不妨尝试一下 tRPC ，它提供了端到端类型安全的 API。它能够极大地提升生产力和用户体验。您还可以将它与 TanStack Query 结合使用，以获得所有与数据获取相关的细节，同时仍然能够通过使用类型化函数从前端调用后端。
+
+Last but not least, if you have a (meta) framework which supports React Server Components/Server Functions (RSC/RSF) (i.e. Next.js), you may want to use them instead for data fetching. They allow you to fetch data on the server and pass it down to the client. This way you can avoid the need for a client-side data fetching library.
+最后但同样重要的一点是，如果你有一个支持 React 服务器组件/服务器函数 (RSC/RSF) 的（元）框架（例如 Next.js），你可能想使用它们来获取数据。它们允许你在服务器上获取数据并将其传递给客户端。这样，你就不需要客户端数据获取库了。
+
+Recommendations:  建议：
+
+- server-side data fetching
+服务器端数据获取
+  - React Server Components/Functions (if supported by (meta) framework)
+React 服务器组件/功能（如果受（元）框架支持）
+- client-side data fetching
+客户端数据获取
+  - TanStack Query (REST APIs or GraphQL APIs)
+TanStack 查询（REST API 或 GraphQL API）
+   - combined with axios or fetch
+与 axios 或 fetch 结合
+  - Apollo Client (GraphQL APIs)
+Apollo 客户端（GraphQL API）
+   - for a more sophisticated GraphQL experience
+获得更复杂的 GraphQL 体验
+-  tRPC for tightly coupled client-server architectures
+tRPC 用于紧密耦合的客户端-服务器架构
+
+
+<hr />
+
+<div align="center" id="Routing-with-React-Router">
+  <h3 align="center">Routing with React Router</h3>
+  <h3 align="center">使用 React Router 进行路由</h3>
+</div>
+
+If you are using a React framework like Next.js, routing is already taken care of for you. However, if you are using React without a framework and only for client-side rendering (e.g. Vite without SSR), the most popular routing library out there is React Router.
+如果您使用的是像 Next.js 这样的 React 框架，那么路由已经为您处理好了。但是，如果您不使用框架而只使用 React 进行客户端渲染（例如，不带 SSR 的 Vite），那么最流行的路由库是 React Router 。
+
+However, this year may be the year of TanStack Router which is a new routing library for React. It is a great alternative to React Router, especially if you are using TypeScript in your React project. Although it is still in beta, anyone familiar with TanStack knows it will be excellent.
+然而，今年可能是 TanStack Router 的元年，它是 React 的一个新路由库。它是 React Router 的绝佳替代品，尤其是在 React 项目中使用 TypeScript 的情况下。虽然它仍处于测试阶段，但熟悉 TanStack 的人都知道它会非常出色。
+
+Both React Router and TanStack Router (with TanStack Start) are working on React Server Components (RSC) support. This means that you can execute components on the server for different use cases (e.g. smaller bundle size, server-side data fetching).
+React Router 和 TanStack Router（以及 TanStack Start）均支持 React 服务器组件 (RSC)。这意味着您可以针对不同的用例（例如，更小的包大小、服务器端数据获取）在服务器上执行组件。
+
+Before you introduce a router in your React project, when you are just about to learn React, you can give React's conditional rendering a shot first. It is not a replacement for routing, but gives you a glimpse on how replacing components on a page level works.
+在 React 项目中引入路由器之前，如果你刚开始学习 React，可以先尝试一下 React 的条件渲染 。它并非路由的替代品，只是让你大致了解一下如何在页面级别替换组件。
+
+Recommendations:  建议：
+
+- server-side routing: Next.js
+服务器端路由：Next.js
+- client-side routing:  客户端路由：
+  - most used: React Router  最常用：React Router
+  - trending: TanStack Router
+趋势：TanStack 路由器
+<hr />
+
+<div align="center" id="CSS-Styling-in-React">
+  <h3 align="center">CSS Styling in React</h3>
+  <h3 align="center">React 中的 CSS 样式</h3>
+</div>
+
+There are many options and even more opinions about styling/CSS in React out there, so putting everything in one section here does not suffice. If you want to get deeper into this topic and get to know all the options, check out the following guide.
+关于 React 中的样式/CSS，市面上有很多选项，甚至还有更多不同的意见，因此将所有内容放在一个章节中是不够的。如果您想深入了解这个主题并了解所有选项，请查看以下指南。
+
+As a React beginner, it is okay to start with inline styles and bare bones CSS by using a style object in JSX. It should be rarely used for actual applications though:
+作为 React 初学者，可以通过在 JSX 中使用样式对象来开始使用内联样式和基本 CSS。不过，在实际应用中，这种方法应该很少使用：
+
+```tsx
+const Headline = ({ title }) =>
+  <h1 style={{ color: 'blue' }}>
+    {title}
+  </h1>
+```
+
+Whereas inline style can be used to add style dynamically with JavaScript in React's JSX, an external CSS file could hold all the remaining style for your React application:
+虽然可以使用内联样式在 React 的 JSX 中使用 JavaScript 动态添加样式，但外部 CSS 文件可以保存 React 应用程序的所有剩余样式：
+
+```tsx
+import './Headline.css';
+
+const Headline = ({ title }) =>
+  <h1 className="headline" style={{ color: 'blue' }}>
+    {title}
+  </h1>
+```
+Once your application grows in size, there are other styling approaches to check out. One last hint before we continue: If you want to apply a className conditionally in React, use a utility library like clsx.
+当你的应用程序规模扩大时，还有其他样式方法可以尝试。继续之前的最后一点提示：如果你想在 React 中有条件地应用 className，可以使用像 clsx 这样的实用程序库。
+
+
+
+First, I want to recommend Tailwind CSS as the most popular Utility-First-CSS solution. It comes with pre-defined CSS classes. This makes you more efficient as a developer and streamlines the design system of your React application, but comes with the tradeoff of getting to know all the classes and verbose inlining of many CSS classes:
+首先，我想推荐 Tailwind CSS ，它是最受欢迎的 “实用优先”CSS 解决方案。它自带预定义的 CSS 类。这可以提高开发者的效率，并简化 React 应用程序的设计系统，但同时也需要你了解所有 CSS 类，并且需要对许多 CSS 类进行冗长的内联：
+
+```tsx
+const Headline = ({ title }) =>
+  <h1 className="text-blue-700">
+    {title}
+  </h1>
+```
+
+
+Second, I would recommend you to have a look into CSS Modules as one of many CSS-in-CSS solutions. CSS Modules give you a way to encapsulate your CSS into component co-located modules. This way, styles don't leak accidentally into other components:
+其次，我推荐你了解一下 CSS 模块，它是众多 CSS-in-CSS 解决方案之一。CSS 模块提供了一种将 CSS 封装到组件中的方法。这样，样式就不会意外泄漏到其他组件中：
+
+```tsx
+import styles from './style.module.css';
+
+const Headline = ({ title }) =>
+  <h1 className={styles.headline}>
+    {title}
+  </h1>
+```
+
+
+And third, I want to show (not recommend anymore) you Styled Components as one of many CSS-in-JS solutions for React. This approach is brought to you by a library called styled-components (or alternatives such as emotion) which co-locates styling created with JavaScript next to your React components in the same file or a co-located file:
+第三，我想向你展示（不再推荐）样式化组件 (Styled Components)，它是众多 React CSS-in-JS 解决方案之一。这种方法由一个名为 styled-components 的库（或其他类似库，例如 emotion ）提供，它将用 JavaScript 创建的样式与你的 React 组件放在同一个文件或共置文件中：
+
+```tsx
+import styled from 'styled-components';
+
+const BlueHeadline = styled.h1`
+  color: blue;
+`;
+
+const Headline = ({ title }) =>
+  <BlueHeadline>
+    {title}
+  </BlueHeadline>
+```
+
+
+Whether you choose CSS-in-CSS or Utility-First-CSS is up to you. The trend goes towards Utility-First-CSS with Tailwind CSS as the industry standard. CSS-in-JS solutions are not as popular anymore because of their performance and hydration problems with server-side environments, even though newer solutions (but not as popular as Styled Components or Emotion) are solving these problems.
+选择 CSS-in-CSS 还是 Utility-First-CSS 取决于您自己。目前趋势是 Utility-First-CSS，而 Tailwind CSS 已成为行业标准。CSS-in-JS 解决方案由于其在服务器端环境中的性能和数据迁移问题而不再流行，尽管较新的解决方案（但不如 Styled Components 或 Emotion 流行）正在解决这些问题。
+
+Other libraries to check out: PandaCSS, linaria, vanilla-extract, nanocss, UnoCSS, and Styled JSX.
+其他值得一试的库有： PandaCSS 、 linaria 、 vanilla-extract 、 nanocss 、 UnoCSS 和 Styled JSX 。
+
+Recommendations:  建议：
+
+- Utility-First-CSS (most popular)
+Utility-First-CSS（最流行）
+ - e.g. Tailwind CSS  例如 Tailwind CSS
+- CSS-in-CSS  CSS 中的 CSS
+ - e.g. CSS Modules  例如 CSS 模块
+- CSS-in-JS
+ - e.g. StyleX by Facebook (compiles to utility-first CSS)
+例如 Facebook 的 StyleX （编译为实用优先的 CSS）
+<hr />
+
+
+<div align="center" id="React-UI-Libraries">
+  <h3 align="center">React UI Libraries</h3>
+  <h3 align="center">React UI 库</h3>
+</div>
+
+As a beginner, it is a great and recommended learning experience to build reusable components from scratch. Whether it is a dropdown, a select, a radio button, or a checkbox, you should know how to create these UI components yourself eventually.
+作为初学者，从头开始构建可复用组件是一个很好的学习体验，值得推荐。无论是下拉菜单 、 选择框 、 单选按钮还是复选框 ，你最终都应该知道如何自己创建这些 UI 组件。
+
+However, if you don't have the resources to come up with all the components yourself, you want to use a UI library which gives you access to lots of pre-built components which share the same design system, functionalities, and rules for accessibility:
+但是，如果您没有足够的资源自己设计所有组件，那么您需要使用 UI 库，它可以让您访问许多预先构建的组件，这些组件共享相同的设计系统、功能和可访问性规则：
+
+- Material UI (MUI) (still most wanted in freelance projects)
+Material UI（MUI） （在自由职业项目中仍然是最需要的）
+- Mantine UI (most popular 2022)
+Mantine UI （2022 年最受欢迎）
+- Chakra UI (most popular 2021)
+Chakra UI （2021 年最受欢迎）
+- Hero UI ([previously] Next UI)
+英雄 UI （[之前] Next UI）
+- Park UI (based on Ark UI)
+Park UI （基于 Ark UI）
+- PrimeReact
+
+
+
+The trend moves towards headless UI libraries though. They come without styling, but with all the functionalities and accessibilities that a modern component library needs. Most of the time they are combined with a Utility-First-CSS solution like Tailwind:
+不过，趋势正在朝着无头 UI 库的方向发展。它们没有样式，但具备现代组件库所需的所有功能和可访问性。大多数情况下，它们与 Tailwind 等“实用优先”的 CSS 解决方案结合使用：
+
+
+- shadcn/ui (most popular 2023 - 2024)
+shadcn/ui （2023 - 2024 年最受欢迎）
+- Radix (foundation for shadcn/ui)
+Radix （shadcn/ui 的基础）
+- React Aria
+- Ark UI (from the makers of Chakra UI)
+Ark UI （来自 Chakra UI 的制造商）
+- Ariakit  阿里亚基特
+- Daisy UI  雏菊用户界面
+- Headless UI  无头用户界面
+- Tailwind UI (not free)
+Tailwind UI （非免费）
+
+Perhaps more out of fashion compared to the other UI libraries:
+与其他 UI 库相比，可能更加过时：
+
+- Ant Design
+- Semantic UI  语义用户界面
+- React Bootstrap  反应引导
+- Reactstrap  反应带
+<hr />
+
+<div align="center" id="React-Animation-Libraries">
+  <h3 align="center">React Animation Libraries</h3>
+  <h3 align="center">React 动画库</h3>
+</div>
+Every animation in a web application begins with CSS. However, you'll soon realize that CSS animations may not fully meet your requirements. Some popular animation libraries for React include:
+Web 应用程序中的每个动画都始于 CSS。然而，您很快就会意识到 CSS 动画可能无法完全满足您的需求。一些流行的 React 动画库包括：
+
+- Motion (most recommended, previously Framer Motion)
+Motion （最推荐，以前称为 Framer Motion）
+- react-spring  反应弹簧
+
+<hr />
+
+
+<div align="center" id="Visualization-and-Chart-Libraries-in-React">
+  <h3 align="center">Visualization and Chart Libraries in React</h3>
+  <h3 align="center">REACT 中的可视化和图表库</h3>
+</div>
+
+If you really want to build charts from the ground up yourself, there is no way around D3. It's a low level visualization library that gives you everything you need to create amazing charts. However, learning D3 is a whole other adventure, thus many developers just pick a React charting library which does everything in exchange for flexibility. Popular solutions are:
+如果你真的想自己从头开始构建图表，那么 D3 是你的不二之选。它是一个底层可视化库，可以为你提供创建精彩图表所需的一切。然而，学习 D3 又是另一回事，因此许多开发者干脆选择一个功能齐全的 React 图表库，以换取灵活性。常见的解决方案包括：
+
+- Recharts (personal recommendation)
+ Recharts （个人推荐）
+  - off the shelf charts  现成的图表
+  - great composability  出色的可组合性
+  -optional customization due to opt-in composability
+由于选择加入可组合性而实现的可选定制
+
+- visx  维斯克斯
+  - leaning more towards low-level D3 than high-level abstraction
+更倾向于低级 D3 而不是高级抽象
+  - steeper learning curve  更陡峭的学习曲线
+  
+- more off the shelf charts, more difficult to customize
+现成的图表越多，定制难度就越大
+  - Victory  胜利
+  - nivo  等级
+  - react-chartjs
+
+<hr />
+
+<div align="center" id="Form-Libraries-in-React">
+  <h3 align="center">Form Libraries in React</h3>
+  <h3 align="center">REACT 中的表单库</h3>
+</div>
+
+The by far most popular library for forms in React is React Hook Form. It comes with everything needed: validation (zod as the most popular), form submission, form state management, and more. It is a great library to get started with forms in React.
+目前为止，React 中最流行的表单库是 React Hook Form 。它提供了所需的一切：表单验证（ zod 最受欢迎）、表单提交、表单状态管理等等。它是一个非常适合在 React 中入门的表单库。
+
+An upcoming alternative is Conform which integrates more nicely with full-stack applications.
+即将推出的替代方案是 Conform ，它与全栈应用程序的集成效果更好。
+
+
+Alternatively, you can use Formik or React Final Form. If you are using a React UI library, see how it integrates with these form libraries.
+或者，您可以使用 Formik 或 React Final Form 。如果您正在使用 React UI 库，请查看它如何与这些表单库集成。
+
+Recommendations:  建议：
+
+ - React Hook Form  React Hook 表单
+   - with zod integration for validation
+集成 zod 进行验证
+<hr />
+
+
+<div align="center" id="Code-Structure-in-React">
+  <h3 align="center">Code Structure in React</h3>
+  <h3 align="center">REACT 中的代码结构</h3>
+</div>
+
+If you want to embrace a unified and common sense code style, use ESLint in your React project. A linter such as ESLint enforces a particular code style. For example, you can make it a requirement with ESLint to follow a popular style guides. You can also integrate ESLint in your IDE/editor and it will point you to every mistake.
+如果您想拥有统一且符合常识的代码风格，请在您的 React 项目中使用 ESLint 。像 ESLint 这样的代码检查工具会强制执行特定的代码风格。例如，您可以要求 ESLint 遵循流行的代码风格指南。您还可以将 ESLint 集成到您的 IDE/编辑器中 ，它会指出您的所有错误。
+
+If you want to embrace a unified code format, use Prettier in your React project. It is an opinionated code formatter with only a handful of opt-in configurations. You can integrate it in your editor or IDE so that it formats your code every time you save a file. Prettier doesn't replace ESLint though, but it integrates nicely with it.
+如果您想采用统一的代码格式，请在 React 项目中使用 Prettier 。它是一款功能强大的代码格式化程序，只需少量可选配置。您可以将其集成到编辑器或 IDE 中 ，以便在每次保存文件时自动格式化代码。Prettier 并不能取代 ESLint，但它可以与 ESLint 完美集成 。
+
+Maybe a rising star in 2025 will be Biome (formerly Rome). ESLint and Prettier are not the most favorite utilities when it comes to their setup and especially interplay. But they are necessary in every web developer's daily work. Biome wants to be an alternative to Prettier and ESLint by providing a fast (Rust based) and all-in-one toolchain.
+2025 年， Biome （原名 Rome）或许会成为一颗冉冉升起的新星。ESLint 和 Prettier 在设置和交互方面并非最受欢迎的工具，但它们却是每个 Web 开发者日常工作中必不可少的工具。Biome 希望通过提供快速（基于 Rust）且一体化的工具链，成为 Prettier 和 ESLint 的替代品。
+
+Recommendations:  建议：
+
+- ESLint + Prettier
+- optionally check out Biome
+可选地检查 Biome
+
+<hr />
+
+
+<div align="center" id="React-Authentication">
+  <h3 align="center">React Authentication</h3>
+  <h3 align="center">React 验证</h3>
+</div>
+In a React application, you may want to introduce authentication with functionalities such as sign up, sign in, and sign out. Other features like password reset and password change features are often needed as well. These features go far beyond React, because a backend application manages these things for you.
+在 React 应用中，你可能希望引入身份验证功能，例如注册、登录和退出。此外，通常还需要其他功能，例如密码重置和密码更改功能。这些功能远远超出了 React 的范畴，因为后端应用程序会为你管理这些功能。
+
+The best learning experience would be implementing a full-stack application with authentication (e.g. The Road to Next) yourself. Since authentication comes with lots of security risks and nitty gritty details not everyone knows about, I'd recommend using a third-party service for authentication in production:
+最好的学习经验是自己实现一个支持身份验证的全栈应用程序（例如 The Road to Next ）。由于身份验证存在许多安全风险，而且一些细节并非人人皆知，因此我建议在生产环境中使用第三方身份验证服务：
+
+- Lucia (Resource)
+露西亚 （资源）
+  - Oslo: Auth and Cryptography
+奥斯陆：身份验证和密码学
+  - Arctic: OAuth 2.0 with support for 50+ providers
+Arctic：OAuth 2.0 支持 50 多家提供商
+- Better Auth  更好的身份验证
+Auth.js
+- Clerk (paid) or Kinde (paid)
+职员 （付费）或 Kinde （付费）
+- Supabase (Auth)  Supabase（授权）
+- AuthKit
+- Auth0
+- AWS Cognito  AWS 知识库
+
+<hr />
+
+
+<div align="center" id="React-Backend">
+  <h3 align="center">React Backend</h3>
+  <h3 align="center">React后端</h3>
+</div>
+
+Since there is a strong trend moving React to the server, the most natural habitat for a React project would be a (meta) framework like Next.js (mostly dynamic web applications) or Astro (mostly static website). React Router (previously Remix) and TanStack Start are also great alternatives, but they are in earlier stages of development.
+由于 React 迁移到服务器的趋势强劲，React 项目最自然的栖息地将是像 Next.js（主要面向动态 Web 应用程序）或 Astro（主要面向静态网站）这样的（元）框架。React Router（前身为 Remix）和 TanStack Start 也是不错的选择，但它们还处于早期开发阶段。
+
+ If you can't use a full-stack framework due to various reasons (while still being able to use a JS/TS), you have to check out tRPC or Hono. Honorable mention goes to the old school but must popular Node backend Express. Other alternatives are Fasitfy, Nest, or Elysia.
+如果您由于各种原因无法使用全栈框架（但仍能使用 JS/TS），那么您应该考虑 tRPC 或 Hono 。值得一提的是老牌但非常流行的 Node 后端 Express 。其他替代方案包括 Fasitfy 、 Nest 或 Elysia 。
+
+Honorable mention goes to Koa and Hapi.
+值得一提的是 Koa 和 Hapi 。
+
+
+
+<hr />
+
+
+<div align="center" id="React-Database">
+  <h3 align="center">React Database</h3>
+  <h3 align="center">React 数据库</h3>
+</div>
+
+Not tied to React, but since full-stack React applications are getting popular these days, React is closer than ever to the database layer. While developing any Next.js application, you will most likely deal with a database ORM. The most popular ORM choice these days is Prisma. A trending alternative is Drizzle ORM.
+虽然与 React 无关，但由于全栈 React 应用程序如今越来越流行，React 比以往任何时候都更接近数据库层。在开发任何 Next.js 应用程序时，你很可能会处理数据库 ORM。目前最流行的 ORM 选择是 Prisma 。另一个流行的替代方案是 Drizzle ORM 。
+
+More alternatives are Kysely and database-js (only PlanetScale).
+更多的替代方案是 Kysely 和 database-js （仅限 PlanetScale）。
+
+When it comes to choosing a database, Supabase (or Firebase) are valid database providers. Supabase with its PostgreSQL can be self-hosted or used as a paid service.
+在选择数据库时，Supabase（或 Firebase）是不错的选择。Supabase 及其 PostgreSQL 可以自托管，也可以作为付费服务使用。
+
+Popular serverless database alternatives are PlanetScale (paid), Neon, Xata, and Turso.
+流行的无服务器数据库替代品有 PlanetScale （付费）、 Neon 、 Xata 和 Turso 。
+
+<hr />
+
+
+<div align="center" id="React-Hosting">
+  <h3 align="center">React Hosting</h3>
+  <h3 align="center">React 托管</h3>
+</div>
+
+Deploying and hosting a React application is similar to deploying any other web app. For complete control over your environment, consider using services like Digital Ocean or Hetzner. These options allow you to manage your infrastructure yourself.
+部署和托管 React 应用程序与部署任何其他 Web 应用类似。为了完全控制您的环境，请考虑使用 Digital Ocean 或 Hetzner 等服务。这些选项允许您自行管理基础架构。
+
+If you prefer a hands-off approach where the hosting platform manages everything for you, Vercel is a well-regarded option, particularly for projects built with Next.js.
+如果您更喜欢托管平台为您管理一切的放手方式，那么 Vercel 是一个备受推崇的选择，特别是对于使用 Next.js 构建的项目。
+
+For a middle ground, Coolify provides an excellent solution, offering some autonomy while simplifying many hosting tasks.
+对于中间立场， Coolify 提供了一个出色的解决方案，在简化许多托管任务的同时提供了一定的自主权。
+
+If you are already using a third-party backend as a service like Firebase/Supabase, you can check whether they offer hosting as well. Other popular hosting providers are Render, Fly.io, Railway, or directly at CloudFlare/AWS/Azure/Google Cloud.
+如果您已经在使用第三方后端即服务（例如 Firebase/Supabase），可以查看它们是否也提供托管服务。其他热门托管服务提供商包括 Render 、 Fly.io 、 Railway ，或者直接使用 CloudFlare/AWS/Azure/Google Cloud。
+
+
+<hr />
+
+
+<div align="center" id="React-Hosting">
+  <h3 align="center">Testing in React</h3>
+  <h3 align="center">React 中测试</h3>
+</div>
+
+The backbone of testing a React application is a test framework like Vitest (recommended) or Jest. It gives you test runner, assertion library and spying, mocking, stubbing functionalities. Everything that's needed in a comprehensive test framework.
+测试 React 应用程序的核心是像 Vitest （推荐）或 Jest 这样的测试框架。它提供了测试运行器、断言库以及监听、模拟、存根等功能。一个全面的测试框架所需的一切都具备了。
+
+Eventually you will find yourself using the popular React Testing Library (RTL), which is used within your testing framework's environment, as a comprehensive testing library for React. RTL makes it possible to render your components and to simulate events on HTML elements. Afterward, your test framework is used for the assertions.
+最终，你会发现自己正在使用流行的 React 测试库 (RTL) ，它在你的测试框架环境中使用，是一个全面的 React 测试库。RTL 可以渲染你的组件并模拟 HTML 元素上的事件。之后，你的测试框架将用于断言。
+
+When it comes to selecting a testing tool for React end-to-end (E2E) testing, two of the most widely recommended and popular options are Playwright (recommended) and Cypress. Both tools allow you to automate and simulate user interactions within a browser, ensuring that your React application behaves as expected from a user's perspective.
+在选择用于 React 端到端 (E2E) 测试的工具时，最受推荐和最受欢迎的两个选项是 Playwright （推荐）和 Cypress 。这两种工具都允许您在浏览器中自动化和模拟用户交互，从而确保您的 React 应用程序从用户的角度按预期运行。
+
+Recommendations:  建议：
+
+- Unit/Integration: Vitest + React Testing Library (most popular)
+单元/集成：Vitest + React 测试库（最受欢迎）
+- E2E Tests: Playwright (or Cypress)
+E2E 测试：Playwright（或 Cypress）
+- optionally Snapshot Tests with Vitest
+可选使用 Vitest 进行快照测试
+
+<hr />
+
+
+<div align="center" id="React-and-Immutable-Data-Structures">
+  <h3 align="center">React and Immutable Data Structures</h3>
+  <h3 align="center">React 和不可变数据结构</h3>
+</div>
+
+Vanilla JavaScript gives you plenty of built-in tools to handle data structures as if they are immutable. However, if you and your team feel the need to enforce immutable data structures, the most popular choice is Immer.
+原生 JavaScript 提供了许多内置工具来处理数据结构，就好像它们是不可变的一样。但是，如果您和您的团队觉得需要强制使用不可变的数据结构，那么最受欢迎的选择是 Immer 。
+
+<hr />
+
+
+<div align="center" id="React-Hosting">
+  <h3 align="center">React Internationalization</h3>
+  <h3 align="center">REACT 国际化</h3>
+</div>
+
+When it comes to internationalization i18n for your React application, you need to think not only about translations, but also about pluralizations, formattings for dates and currencies, and a handful of other things. These are the most popular libraries for dealing with it:
+在为 React 应用程序进行国际化 i18n 时，你不仅需要考虑翻译，还需要考虑复数形式、日期和货币的格式以及其他一些问题。以下是一些常用的库来处理这些问题：
+
+- FormatJS
+- react-i18next
+- Lingui  语言
+- next-intl (Next.js)
+next-intl （Next.js）
+
+<hr />
+
+
+<div align="center" id="Rich-Text-Editor-in-React">
+  <h3 align="center">Rich Text Editor in React</h3>
+  <h3 align="center">React 中的富文本编辑器</h3>
+</div>
+
+When it comes to Rich Text Editors in React, I can only think of the following:
+当谈到 React 中的富文本编辑器时，我只能想到以下几点：
+
+- TipTap  提示
+- Plate  盘子
+- Lexical  词汇
+- Slate  石板
+
+<hr />
+
+
+<div align="center" id="Payments-in-React">
+  <h3 align="center">Payments in React</h3>
+  <h3 align="center">REACT 支付</h3>
+</div>
+
+When it comes to integrating payment solutions into your React application, Stripe and PayPal are the most commonly used providers. Both offer seamless integration options for React.
+在将支付解决方案集成到 React 应用程序中时，Stripe 和 PayPal 是最常用的提供商。两者都为 React 提供了无缝集成选项。
+
+- PayPal
+- Stripe  条纹
+  - React Stripe Elements  React Stripe 元素
+  - Stripe Checkout  Stripe 结账
+Other payment providers are Braintree (PayPal) and Lemon Squeezy (Stripe) which have been acquired by their competitors.
+其他支付提供商包括 Braintree （PayPal）和 Lemon Squeezy （Stripe），它们已被竞争对手收购。
+
+
+<hr />
+
+
+<div align="center" id="Time-in-React">
+  <h3 align="center">Time in React</h3>
+  <h3 align="center">REACT 时间</h3>
+</div>
+
+If your React application frequently handles dates, times, and timezones, consider using a dedicated library to manage these aspects efficiently. Here are some options:
+如果您的 React 应用程序经常处理日期、时间和时区，请考虑使用专用库来高效地管理这些方面。以下是一些选项：
+
+- date-fns  日期函数
+- Day.js
+
+<hr />
+
+
+<div align="center" id="Payments-in-React">
+  <h3 align="center">React Desktop Applications</h3>
+  <h3 align="center">React 桌面应用程序</h3>
+</div>
+
+Electron and Tauri are the go to frameworks for cross-platform desktop applications.
+Electron 和 Tauri 是跨平台桌面应用程序的首选框架。
+
+<hr />
+
+
+<div align="center" id="File-Upload-in-React">
+  <h3 align="center">File Upload in React</h3>
+  <h3 align="center">REACT 上传文件</h3>
+</div>
+
+- input field with type="file"
+type="file" 的输入字段
+- react-dropzone  反应拖放区
+<hr />
+
+
+<div align="center" id="File-Upload-in-React">
+  <h3 align="center">File Upload in React</h3>
+  <h3 align="center">REACT 上传文件</h3>
+</div>
+
+E-Mail rendering is a pain if you are just using HTML. Fortunately, there are libraries out there which help you to create responsive HTML emails with React components:
+如果只使用 HTML，电子邮件渲染会非常麻烦。幸运的是，有一些库可以帮助你使用 React 组件创建响应式 HTML 电子邮件：
+
+- react-email (recommendation)
+- react-email （推荐）
+- mjml  嗯
+- Mailing  邮寄
+- jsx-email  jsx-电子邮件
+
+If you are looking for a email service provider, check out Resend, Postmark, SendGrid, or Mailgun.
+如果您正在寻找电子邮件服务提供商，请查看 Resend 、 Postmark 、 SendGrid 或 Mailgun 。
+
+
+<hr />
+
+
+<div align="center" id="Drag-and-Drop">
+  <h3 align="center">Drag and Drop</h3>
+  <h3 align="center">拖放</h3>
+</div>
+Personally I have used the successor of react-beautiful-dnd and cannot say anything negative about it. A popular alternative which offers way more flexibility and options, but comes with the cost of a steeper learning curve, is dnd kit.
+我个人用过 react-beautiful-dnd 的后续版本 ，对它没什么不满。dnd kit 是一个很受欢迎的替代方案，它提供了更多的灵活性和选项，但学习起来比较费劲。
+
+<hr />
+
+
+<div align="center" id="Mobile-Development-with-React">
+  <h3 align="center">Mobile Development with React</h3>
+  <h3 align="center">使用 React 进行移动开发</h3>
+</div>
+
+The go-to solution for bringing React from the web to mobile is still React Native. The most popular framework for creating React Native applications is Expo. If you need unified components across web and mobile, you want to check out Tamagui.
+将 React 从 Web 迁移到移动端的首选解决方案仍然是 React Native 。最流行的 React Native 应用创建框架是 Expo 。如果您需要跨 Web 和移动端的统一组件，您可以考虑 Tamagui 。
+
+<hr />
+
+
+<div align="center" id="React-VR/AR">
+  <h3 align="center">React VR/AR</h3>
+  <h3 align="center">React 虚拟现实/增强现实</h3>
+</div>
+
+
+It's possible to dive into virtual reality or augmented reality with React. To be honest, I haven't used any of these libraries and most are early stage (experimental), but they are the ones I know from the top of my head when it comes to AR/VR in React:
+使用 React 可以深入探索虚拟现实或增强现实。说实话，我还没用过这些库，而且它们大多数都处于早期阶段（实验性），但说到 React 中的 AR/VR，我最先想到的就是这些：
+
+- react-three-fiber (popular 3d library, however, I have seen VR examples too)
+- react-three-fiber （流行的 3d 库，不过我也见过 VR 示例）
+- react-360 (archived)
+react-360 （已存档）
+- aframe-react (not maintained anymore)
+aframe-react （不再维护）
+
+
+<hr />
+
+
+<div align="center" id="Design-Prototyping-for-React">
+  <h3 align="center">Design Prototyping for React</h3>
+  <h3 align="center">为 React 设计原型</h3>
+</div>
+
+
+If you are coming from a UI/UX background, you may want to use a tool for fast prototyping for new React components, layouts, or UI/UX concepts. Personally I use Figma. For rough yet lightweight sketches, I like to use Excalidraw, others prefer tldraw.
+如果您有 UI/UX 背景，您可能需要使用一个工具来快速为新的 React 组件、布局或 UI/UX 概念进行原型设计。我个人使用 Figma 。对于粗略但轻量级的草图，我喜欢使用 Excalidraw ，其他人更喜欢 tldraw 。
+
+
+<hr />
+
+
+<div align="center" id="React-Component-Documentation">
+  <h3 align="center">React Component Documentation</h3>
+  <h3 align="center">React 组件文档</h3>
+</div>
+
+If you are in charge of writing the documentation for your components, there are various neat React documentation tools out there. I've used Storybook in many projects and have a neutral opinion about it. I've heard good things about these other solutions too:
+如果您负责编写组件文档，那么市面上有各种简洁的 React 文档工具可供选择。我在许多项目中使用过 Storybook ，对它持中立态度。我也听说过其他一些解决方案的好评：
+
+- Docusaurus  多库萨乌斯
+- Styleguidist  风格指南
+- React Cosmos
+
+Ultimately, the React ecosystem functions as a flexible framework centered around React. It allows you to make informed choices about which libraries to incorporate, enabling you to start small and add libraries as needed to address specific challenges. Conversely, if React alone meets your requirements, you can maintain a lightweight setup by using just the core library.
+归根结底，React 生态系统是一个以 React 为中心的灵活框架。它允许您在选择要集成的库时做出明智的选择，让您能够从小处着手，并根据需要添加库以应对特定挑战。相反，如果 React 本身就能满足您的需求，那么您可以只使用核心库来维护一个轻量级的设置。
+
+
