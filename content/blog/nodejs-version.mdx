@@ -1,0 +1,76 @@
+---
+title: "nodejs基数和偶数版本的区别"
+description: "当我们去学习nodejs生态的时候，都会遇到nodejs版本要求，我们可能理解为低版本nodejs已经落后了，但是往往有的时候要求却是要我们安装偶数版本，这是为什么呢？"
+date: "2025-05-27"
+image: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/nodejs-version-cover.webp"
+tags: ["nodejs", "nodejs LTS"]
+author:
+  name: "JiangBao"
+  username: "这家伙很懒，什么也没留下"
+  avatar: "https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/avatar.png"
+---
+
+<img
+  src="https://cdn.jsdelivr.net/gh/afuryboy/my-pic@main/blog/nodejs-version-cover.webp"
+  width={700}
+  height={350}
+  alt="nodejs-version"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+### 
+
+当我们在学习Nodejs生态时，往往某个库或者框架会要求我们安装nodejs LTS版本，会特地注明偶数版本，这是怎么回事呢？
+
+举例:
+
+Prerequisites
+在安装 Strapi 之前，你的计算机上必须安装以下要求：
+
+Node.js:仅支持 活动 LTS 或维护 LTS 版本（目前支持 v20 和 v22）。不支持 Node 的奇数版本（称为 Node.js 的 "current" 版本）（例如 v21、v23）。
+
+非 LTS 的 Node.js 版本（奇数版本）不在 Vite 的 CI 测试范围内
+
+## nodejs版本号区分
+
+  Node.js 有 LTS 系列和 Current 系列，分别对应不同的最新版本号。
+
+### LTS 版本
+
+LTS 版本全称 Long Time Support，即长期支持版本，重点在于稳定性和安全性，每个 LTS 版本的大版本号都是偶数，建议首次下载以及后续的每次升级都选择 LTS 版本，减少开发过程中出现的未知问题。 LTS 版本有 3 个阶段的生命周期：
+
+- Active(活跃阶段)
+  每个从 Current 进入 LTS 的偶数版本，都会有 18 个月的时间被积极维护和升级。
+- Maintenance(维护阶段)
+  活跃阶段达到 18 个月后，会进入为期 12 个月的维护阶段，期间只会进行错误修复和安全补丁。
+- End of Life(结束阶段)
+  简称 EOL ，在维护阶段达到期限之后，该版本进入 EOL 阶段，将不再维护，也就是说，每个 LTS 版本最长会有 30 个月的维护时间，之后将不再进行维护。
+
+
+<img
+  src="/blog/nodejs-version-timeline.svg"
+  width={700}
+  height={350}
+  alt="版本的生命周期图（2022-2025）"
+  className="w-full border border-transparent dark:border-default-200/50 object-fit rounded-xl shadow-lg"
+/>
+
+<p className='text-center'>版本的生命周期图（2022-2025）</p>
+
+### Current 版本
+
+Current 即最新发布版本，该版本专注于必要功能的开发和现有 API 的完善，具有较短的寿命和更频繁的代码更新。
+你可以在该版本体验到最新功能，也可以能遇到各种意想不到的问题和兼容性要处理。
+通常 Current 版本会在每 6 个月发布一次大版本（特殊情况除外）：
+
+- 偶数版本:
+  每年 4 月份发布新的偶数版本
+- 奇数版本:
+  每年 10 月份发布新的奇数版本
+
+
+### 总结
+
+- current 奇数版本过了6个月的支持期就结束了，同时偶数版本会进入Active LTS 状态，如上图所示
+
+- 看到这里你应该明白了，不管框架或者库要求安装的都是稳定版本，而奇数版本则是提前让node生态去兼容新版api

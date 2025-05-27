@@ -2,5 +2,6 @@
 
 import blog__fastifyCorsMdx from './blog__fastify-cors.mdx.json' with { type: 'json' }
 import blog__reactLibraries_2025Mdx from './blog__react-libraries-2025.mdx.json' with { type: 'json' }
+import blog__nodejsVersionMdx from './blog__nodejs-version.mdx.json' with { type: 'json' }
 
-export const allBlogPosts = [blog__fastifyCorsMdx, blog__reactLibraries_2025Mdx]
+export const allBlogPosts = [blog__fastifyCorsMdx, blog__reactLibraries_2025Mdx, blog__nodejsVersionMdx]
